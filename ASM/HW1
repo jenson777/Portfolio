@@ -1,0 +1,117 @@
+.data
+
+name: .space 32
+f: .word 0
+g: .word 0
+h: .word 0
+ans1: .word 0
+ans2: .word 0
+ans3: .word 0
+hello: .asciiz"Hello"
+msg: .asciiz "your answers are: "
+prompt_name: .asciiz"Please enter your name: "
+prompt_int: .asciiz "Enter a number from 1-100: "
+read_int: .asciiz "Thank you for entering  "
+newline: .asciiz "\n"
+space: .asciiz " "
+# Text Section
+.text
+
+main:
+
+# Prompt the user for their name
+#prompt user for name
+
+li $v0, 4
+la $a0, prompt_name
+syscall
+
+#read 3 input from user
+
+li $v0, 8
+la $a0, name
+li $a1, 30
+
+move $t0, $a0
+syscall
+
+
+li $v0, 4
+la $a0, prompt_int
+syscall
+
+li $v0, 5
+syscall
+sw $v0, f
+
+li $v0, 4
+la $a0, prompt_int
+syscall
+li $v0, 5
+syscall
+sw $v0, g
+
+li $v0, 4
+la $a0, prompt_int
+syscall
+
+li $v0, 5
+syscall
+sw $v0, h
+
+#loading values to temp var
+lw $t0, f
+lw $t1, g
+lw $t2, h
+#storing value from temp to ans
+sw $t0,ans1
+sw $t1,ans2
+sw $t2,ans3
+
+# Display the user's name and message for results
+
+li $v0,4
+la $a0,newline
+syscall
+
+li $v0, 4
+la $a0, hello
+syscall
+
+li $v0,4
+la $a0,space
+syscall
+
+li $v0,4
+la $a0,name
+syscall
+
+#Displaying integers
+li $v0, 4
+la $a0, read_int
+syscall
+
+li $v0, 1
+lw $a0, ans1
+syscall
+
+li $v0, 4
+la $a0, space
+syscall
+
+li $v0, 1
+lw $a0, ans2
+syscall
+
+li $v0, 4
+la $a0, space
+syscall
+
+li $v0, 1
+lw $a0, ans3
+syscall
+
+li $v0, 4
+la $a0, space
+syscall
+
