@@ -1,3 +1,8 @@
+
+# Author: Jenson Antony
+# Date: Feb 2 2024
+# Description: Program to print given name,value and calculated output 
+
 .data
 
 f: .space 4
@@ -84,6 +89,7 @@ li $v0, 4
 la $a0, read_int
 syscall
 
+#Displaying the input
 li $v0, 1
 lw $a0, f
 syscall
